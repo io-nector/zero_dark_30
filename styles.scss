@@ -1,237 +1,207 @@
-//sass --watch input.scss output.css
-    //run in terminal
-
-//google fonts
-// oxygen 400
-@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
-
-//icon
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-
-
-//google icons css setup - see link for more info
-    //https://fonts.google.com/icons?selected=Material+ (concat the next row)
-    //Symbols+Outlined:pin_drop:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=map
-
-
+//stary sky BG Photo by Bartek Garbowicz on Unsplash
 
 //variables
-$header_font_color:rgb(255, 255, 255);
-$default_bg_color:rgba(0, 0, 0, 0);
-
-//extend/ inheritance
-%debug_border {
-    border: solid rgba(0, 0, 0, 1) 1px;
+@mixin debug_border {
+    border: solid black 2px;
 }
 
-
-@mixin max_hw (
-        $width: 100%,
-        $height: 100%,
-        $padding: 5px,
-        $margin: 5px,
-    ){
-        width: $width;
-        height: $height;
-        padding: $padding;
-        margin: $margin;
-    }
-
-@mixin flex_center (
-        $align_items:center,
-        $justify_content:center,
-        $align_self:none,
-        $justify_self:none,
-    ){
-        display: flex;
-        align-items: $align_items;
-        justify-content: $justify_content;
-        align-self: $align_self;
-        justify-content: $justify_self;
-        background-color: $default_bg_color;
-    }
-
-@mixin default_font(
-    $color: white,
-    $font_family:  ('Sorts Mill Goudy', sans-serif),
-    $font_size: 20px,
-    $font_weight:none,
-    $letter_spacing:3px,
-
-    ){
-        color: $color;
-        font-family: $font_family;
-        font-size: $font_size;
-        text-decoration: none;
-        font-weight: $font-weight;
-        letter-spacing: $letter_spacing;
-    }
-
-@mixin icon_settings {
-    font-size: 60px;
-    color: rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.212);
-    backdrop-filter: blur(5px);
-
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 0,
-}
-
-@mixin bg_image (
-    $url:none,
-    $background-size:cover,
-    ){
-    background-image:url($url) ;
+@mixin bg_img {
+    background-image: url("images/barn_bg_4.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: $background-size;
+    background-size: cover;
+    box-shadow: inset 0  -15px  30px rgb(0, 0, 0);
+    
+    //animation to fade main when scrolling down
+    animation: bg_fade auto linear;
+    view-timeline: --subjectReveal block;
+    animation-timeline: --subjectReveal;
+    animation-duration: 1ms;
+
+    @keyframes bg_fade {
+        0% {
+            opacity: 1;}
+        50% {
+            opacity: 1;}
+        55% {
+            opacity: .3;}   
+        80% {
+            opacity: 0;}
+        100% {
+            opacity: 0;}
+    }
+}
+
+@mixin fg_smoke_1 {
+    display: flex;
+    align-items: start;
+
+    //cloud animation
+    animation-name: fg_fade;
+    animation-timing-function: scroll();
+    view-timeline: --fg_reveal block;
+    animation-timeline: --fg_reveal;
+    animation-duration: 1ms;
+
+    @keyframes fg_fade {
+        0%{
+            opacity: 0;
+            transform: translateY(300vh);}
+        25% {
+            opacity: 0;}
+        50% {
+            opacity: 1;}
+        100% {
+            opacity: 1;}
     }
 
-
-
-    
-//overriedes everything - this really helps, need to look into it to understand why
-/*overrides everything*/
-* { 
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-    background-color: #ffffff;
+    .img1 {
+        justify-self: start;
+        width: 80%;
+        background-color: rgba(0, 0, 0,0);
+    }
 }
+   
+@mixin fg_smoke_2 {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+
+    animation-name: fg_fade_2;
+    animation-timing-function: scroll();
+    view-timeline: --fg_reveal_2 block;
+    animation-timeline: --fg_reveal_2;
+    animation-duration: 1ms;
+
+    @keyframes fg_fade_2 {
+        0%{
+            opacity: 0;
+            transform: translateY(300vh);}
+        25% {
+            opacity: 0;
+            transform: translateY(200vh);}
+        50% {
+            opacity: 1;}
+        100% {
+            opacity: 1;}}
+    
+    .img1 {
+        width: 80%;
+    }
+}    
+
+@mixin moon {
+
+    img {
+        width: 200px;
+        height: 200px;
+    
+    //animation for mooon
+    animation-name: move_moon;
+    animation-timing-function: scroll();
+    view-timeline: --moon_move block;
+    animation-timeline:  --moon_move;
+    animation-duration: 1ms;
+    }
+
+    @keyframes move_moon {
+        0% {
+            transform: translate(-100vw, -100vh);}
+        50% {}
+
+        100% {
+            transform: translate(0, 0);}
+    }
+}
+
+    @mixin default_font(
+        $color: rgb(187, 187, 187),
+        $font_family:  ('Sorts Mill Goudy'),
+        $font_size: 20px,
+        $font_weight:normal,
+        $letter_spacing:3px,
+    
+        ){
+            color: $color;
+            font-family: $font_family;
+            font-size: $font_size;
+            text-decoration: none;
+            font-weight: $font-weight;
+            letter-spacing: $letter_spacing;
+        }
+
 
 html {
-    @extend %debug_border;
-    @include max_hw;
-    @include flex_center;
-    
 }
 
-body { 
-    @extend %debug_border;
-    @include max_hw;
-    @include flex_center;
+body {
+
+    margin: 0px;
+    padding: 0px;
+    @include debug_border();
+    background-color: black;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 110px;
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(10, 10vw);
+    grid-template-rows: 100vh;
+    grid-auto-rows: 200px;
 
-    @include bg_image($url:'images/barn_bg_4.jpg');
-}
+    .pg_1 {
+        grid-column: 1/-1;
+        grid-row:1;
+        @include debug_border();
+        @include bg_img();
 
-
-//header section
-header {
-    //page alignment setup
-    grid-column: 1/-1;
-    grid-row: 1;
-    @extend %debug_border;
-    @include max_hw($height:100px);
-    @include flex_center($align_self:start);
+        h1 {
+            @include default_font($font_size:80px,$letter_spacing:20px);
+            padding: 20px;
+            padding-left: 50px;
+            background-color: rgba(0, 0, 0, 0.082);
+            backdrop-filter: blur(10px);
+            text-align: start;
+        }
+    }
     
-    //section setup
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    padding: 3px;
+    .fg_clouds_1 {
+        grid-column: 1/-1;
+        grid-row: 1/ span 3;
+        @include  fg_smoke_1();
+    }
 
-    //menu in center top of screen
-    .nav_top {
-        @extend %debug_border;
-        grid-column: 2/ span 4;
-        @include flex_center($align-items:start);
-        @include max_hw();
-        gap: 15%;
+    .fg_clouds_2 {
+        grid-column: 1/-1;
+        grid-row: 1/ span 3;
+        @include  fg_smoke_2();
+    }
 
-        a {
-            @include default_font();
-            background-color: $default_bg_color;
+    .star_container {
+        grid-column: 1/-1;
+        grid-row: 2/span 21;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            width: 100%;
+            height: auto;
+            opacity: .2;
         }
     }
 
-    //drop down menu in right hand corner
-    .nav_right {
-        grid-column: 4,span 2;
-        @include flex_center();
-        @extend %debug_border;
-        @include max_hw();
+    .moon {
+        grid-column: 1/ -1;
+        grid-row: 8/ span 5;
+        display: flex;
+        justify-content: end;
+        align-items: start;            
+        @include moon();
+    }
+
+    .filler {
+        //this class can be subbed for bottom content
+        grid-column: 1/-1;
+        grid-row: span 4;
     }
 }
-//End Header
 
-main {
-    //page alignment setup
-    grid-row: 2;
-    @extend %debug_border;
-    @include max_hw();
-    @include flex_center();
-
-    //section setup
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-auto-rows: 100px;
-    gap: 5px;
+icon_menu {
     
-    //right icon images
-    .icon_object {
-        grid-column: 8;
-        grid-row: span 1;
-        @extend %debug_border;
-        @include max_hw;
-        @include flex_center($justify_content:End);
-        padding-right: 20%;
-        
-        
-        //name of class below is reuired for google fonts to work
-        .material-symbols-outlined {
-            //these settings override google font settings
-            @include icon_settings();
-         }       
-    }
-
-    //main co. name
-    .company_name {
-        grid-column: 1/ -2;
-        grid-row: 1/ span 2 ;
-        @extend %debug_border;
-        @include max_hw;
-        @include flex_center($justify_content:start);
-        @include default_font($font_size:125px)
-    }
-
-
-    .content_page_2 {
-        grid-column: 1/ -1;
-        grid-row: 11/ span 30 ;
-        @extend %debug_border;
-        @include max_hw;
-        @include flex_center($justify_content:start);
-        @include default_font($font_size:200px);
-
-        .page_2_bg {
-            @include max_hw();
-            @include bg_image($url:'images/rooster.jpg', $background-size:contain);
-        
-        }
-    }
-
-    .content_page_3 {
-        grid-column: 1/ -1;
-        grid-row: 41/ span 30 ;
-        @extend %debug_border;
-        @include max_hw;
-        @include flex_center($justify_content:start);
-        @include default_font($font_size:200px);
-
-    }
 }
-
-
-
-
-
-
-
