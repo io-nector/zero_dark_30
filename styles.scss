@@ -1,207 +1,94 @@
-//stary sky BG Photo by Bartek Garbowicz on Unsplash
 
-//variables
-@mixin debug_border {
-    border: solid black 2px;
+
+@mixin debug_border (
+    $color:black
+){
+    border:$color solid 2px;
 }
 
-@mixin bg_img {
-    background-image: url("images/barn_bg_4.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    box-shadow: inset 0  -15px  30px rgb(0, 0, 0);
-    
-    //animation to fade main when scrolling down
-    animation: bg_fade auto linear;
-    view-timeline: --subjectReveal block;
-    animation-timeline: --subjectReveal;
-    animation-duration: 1ms;
+@mixin section_setup (
+    $justify-content: center,
+    $align-items: center,
+    $column_count: 10,
+    $row_count: 10,
+){
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat($column_count, 1fr);
+    grid-template-rows: repeat($row_count, 1fr);
+    justify-content: $justify-content;
+    align-items: $align-items;
+    scroll-snap-align: start;
 
-    @keyframes bg_fade {
-        0% {
-            opacity: 1;}
-        50% {
-            opacity: 1;}
-        55% {
-            opacity: .3;}   
-        80% {
-            opacity: 0;}
-        100% {
-            opacity: 0;}
+    @include debug_border();
+}
+
+/*-----------------------------------------------------------------
+------------------------------------------------------------------*/
+html, body {
+    scroll-snap-type: y mandatory;
+    margin: 0px;
+}
+
+#main {
+    @include section_setup();
+
+     img {
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        width: 100%;
+        height: 100vh;
+
+        animation-name: main_img_animation;
+        animation-timeline: scroll();
+        animation-duration: 1ms;
+        
+        @keyframes main_img_animation {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+
     }
 }
 
-@mixin fg_smoke_1 {
-    display: flex;
-    align-items: start;
-
-    //cloud animation
-    animation-name: fg_fade;
-    animation-timing-function: scroll();
-    view-timeline: --fg_reveal block;
-    animation-timeline: --fg_reveal;
-    animation-duration: 1ms;
-
-    @keyframes fg_fade {
-        0%{
-            opacity: 0;
-            transform: translateY(300vh);}
-        25% {
-            opacity: 0;}
-        50% {
-            opacity: 1;}
-        100% {
-            opacity: 1;}
-    }
-
-    .img1 {
-        justify-self: start;
-        width: 80%;
-        background-color: rgba(0, 0, 0,0);
-    }
-}
-   
-@mixin fg_smoke_2 {
-    display: flex;
-    align-items: start;
-    justify-content: end;
-
-    animation-name: fg_fade_2;
-    animation-timing-function: scroll();
-    view-timeline: --fg_reveal_2 block;
-    animation-timeline: --fg_reveal_2;
-    animation-duration: 1ms;
-
-    @keyframes fg_fade_2 {
-        0%{
-            opacity: 0;
-            transform: translateY(300vh);}
-        25% {
-            opacity: 0;
-            transform: translateY(200vh);}
-        50% {
-            opacity: 1;}
-        100% {
-            opacity: 1;}}
-    
-    .img1 {
-        width: 80%;
-    }
-}    
-
-@mixin moon {
+#second_page {
+    @include section_setup();
 
     img {
-        width: 200px;
-        height: 200px;
-    
-    //animation for mooon
-    animation-name: move_moon;
-    animation-timing-function: scroll();
-    view-timeline: --moon_move block;
-    animation-timeline:  --moon_move;
-    animation-duration: 1ms;
-    }
-
-    @keyframes move_moon {
-        0% {
-            transform: translate(-100vw, -100vh);}
-        50% {}
-
-        100% {
-            transform: translate(0, 0);}
-    }
-}
-
-    @mixin default_font(
-        $color: rgb(187, 187, 187),
-        $font_family:  ('Sorts Mill Goudy'),
-        $font_size: 20px,
-        $font_weight:normal,
-        $letter_spacing:3px,
-    
-        ){
-            color: $color;
-            font-family: $font_family;
-            font-size: $font_size;
-            text-decoration: none;
-            font-weight: $font-weight;
-            letter-spacing: $letter_spacing;
-        }
-
-
-html {
-}
-
-body {
-
-    margin: 0px;
-    padding: 0px;
-    @include debug_border();
-    background-color: black;
-    display: grid;
-    grid-template-columns: repeat(10, 10vw);
-    grid-template-rows: 100vh;
-    grid-auto-rows: 200px;
-
-    .pg_1 {
         grid-column: 1/-1;
-        grid-row:1;
-        @include debug_border();
-        @include bg_img();
-
-        h1 {
-            @include default_font($font_size:80px,$letter_spacing:20px);
-            padding: 20px;
-            padding-left: 50px;
-            background-color: rgba(0, 0, 0, 0.082);
-            backdrop-filter: blur(10px);
-            text-align: start;
-        }
-    }
-    
-    .fg_clouds_1 {
-        grid-column: 1/-1;
-        grid-row: 1/ span 3;
-        @include  fg_smoke_1();
-    }
-
-    .fg_clouds_2 {
-        grid-column: 1/-1;
-        grid-row: 1/ span 3;
-        @include  fg_smoke_2();
-    }
-
-    .star_container {
-        grid-column: 1/-1;
-        grid-row: 2/span 21;
-        display: flex;
-        flex-direction: column;
-
-        img {
-            width: 100%;
-            height: auto;
-            opacity: .2;
+        grid-row: 1/-1;
+        width: 100%;
+        height: 100%;
         }
     }
 
-    .moon {
-        grid-column: 1/ -1;
-        grid-row: 8/ span 5;
-        display: flex;
-        justify-content: end;
-        align-items: start;            
-        @include moon();
-    }
 
-    .filler {
-        //this class can be subbed for bottom content
+#third_page {
+    @include section_setup();
+
+    img {
         grid-column: 1/-1;
-        grid-row: span 4;
+        grid-row: 1/-1;
+        width: 100%;
+        height: 100%;
+        }
     }
-}
 
-icon_menu {
+#fourth_page {
+    @include section_setup();
+
+    img {
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        width: 100%;
+        height: 100%;
+        }
+    }
     
-}
+

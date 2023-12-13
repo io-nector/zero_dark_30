@@ -1,157 +1,91 @@
-body {
+/*-----------------------------------------------------------------
+------------------------------------------------------------------*/
+html, body {
+  scroll-snap-type: y mandatory;
   margin: 0px;
-  padding: 0px;
-  border: solid black 2px;
-  background-color: black;
+}
+
+#main {
+  height: 100vh;
+  width: 100vw;
   display: grid;
-  grid-template-columns: repeat(10, 10vw);
-  grid-template-rows: 100vh;
-  grid-auto-rows: 200px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  border: black solid 2px;
 }
-body .pg_1 {
+#main img {
   grid-column: 1/-1;
-  grid-row: 1;
-  border: solid black 2px;
-  background-image: url("images/barn_bg_4.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  box-shadow: inset 0 -15px 30px rgb(0, 0, 0);
-  animation: bg_fade auto linear;
-  view-timeline: --subjectReveal block;
-  animation-timeline: --subjectReveal;
-  animation-duration: 1ms;
-}
-@keyframes bg_fade {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  55% {
-    opacity: 0.3;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-body .pg_1 h1 {
-  color: rgb(187, 187, 187);
-  font-family: "Sorts Mill Goudy";
-  font-size: 80px;
-  text-decoration: none;
-  font-weight: normal;
-  letter-spacing: 20px;
-  padding: 20px;
-  padding-left: 50px;
-  background-color: rgba(0, 0, 0, 0.082);
-  backdrop-filter: blur(10px);
-  text-align: start;
-}
-body .fg_clouds_1 {
-  grid-column: 1/-1;
-  grid-row: 1/span 3;
-  display: flex;
-  align-items: start;
-  animation-name: fg_fade;
-  animation-timing-function: scroll();
-  view-timeline: --fg_reveal block;
-  animation-timeline: --fg_reveal;
-  animation-duration: 1ms;
-}
-@keyframes fg_fade {
-  0% {
-    opacity: 0;
-    transform: translateY(300vh);
-  }
-  25% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-body .fg_clouds_1 .img1 {
-  justify-self: start;
-  width: 80%;
-  background-color: rgba(0, 0, 0, 0);
-}
-body .fg_clouds_2 {
-  grid-column: 1/-1;
-  grid-row: 1/span 3;
-  display: flex;
-  align-items: start;
-  justify-content: end;
-  animation-name: fg_fade_2;
-  animation-timing-function: scroll();
-  view-timeline: --fg_reveal_2 block;
-  animation-timeline: --fg_reveal_2;
-  animation-duration: 1ms;
-}
-@keyframes fg_fade_2 {
-  0% {
-    opacity: 0;
-    transform: translateY(300vh);
-  }
-  25% {
-    opacity: 0;
-    transform: translateY(200vh);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-body .fg_clouds_2 .img1 {
-  width: 80%;
-}
-body .star_container {
-  grid-column: 1/-1;
-  grid-row: 2/span 21;
-  display: flex;
-  flex-direction: column;
-}
-body .star_container img {
+  grid-row: 1/-1;
   width: 100%;
-  height: auto;
-  opacity: 0.2;
-}
-body .moon {
-  grid-column: 1/-1;
-  grid-row: 8/span 5;
-  display: flex;
-  justify-content: end;
-  align-items: start;
-}
-body .moon img {
-  width: 200px;
-  height: 200px;
-  animation-name: move_moon;
-  animation-timing-function: scroll();
-  view-timeline: --moon_move block;
-  animation-timeline: --moon_move;
+  height: 100vh;
+  animation-name: main_img_animation;
+  animation-timeline: scroll();
   animation-duration: 1ms;
 }
-@keyframes move_moon {
-  0% {
-    transform: translate(-100vw, -100vh);
+@keyframes main_img_animation {
+  from {
+    opacity: 1;
   }
-  100% {
-    transform: translate(0, 0);
+  to {
+    opacity: 0;
   }
 }
-body .filler {
+
+#second_page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  border: black solid 2px;
+}
+#second_page img {
   grid-column: 1/-1;
-  grid-row: span 4;
+  grid-row: 1/-1;
+  width: 100%;
+  height: 100%;
+}
+
+#third_page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  border: black solid 2px;
+}
+#third_page img {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  width: 100%;
+  height: 100%;
+}
+
+#fourth_page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  border: black solid 2px;
+}
+#fourth_page img {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */
