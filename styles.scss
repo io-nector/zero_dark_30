@@ -1,4 +1,10 @@
+//scroll triggered animations are done using javascript - see 
 
+// https://alvarotrigo.com/blog/css-animations-scroll/
+
+//this is a great little javascript/ css work around. works on safari as well
+
+// must include a .js file as well as .reveal, and reveal.active class in css to work. 
 
 @mixin debug_border (
     $color:black
@@ -20,8 +26,18 @@
     justify-content: $justify-content;
     align-items: $align-items;
     scroll-snap-align: start;
+    //may want to remove this based on user experience
+    scroll-snap-stop: always;
+
 
     @include debug_border();
+}
+
+@mixin bg_images {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    width: 100%;
+    height: 100vh;
 }
 
 /*-----------------------------------------------------------------
@@ -29,66 +45,136 @@
 html, body {
     scroll-snap-type: y mandatory;
     margin: 0px;
+    background-color: rgb(49, 49, 49);
 }
 
 #main {
     @include section_setup();
 
-     img {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
-        width: 100%;
-        height: 100vh;
-
-        animation-name: main_img_animation;
-        animation-timeline: scroll();
-        animation-duration: 1ms;
-        
-        @keyframes main_img_animation {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-
-
+     .bg {
+        @include bg_images();
     }
 }
+
 
 #second_page {
     @include section_setup();
 
-    img {
+    .bg {
+        @include bg_images();
+    }
+
+    .cloud1 {
         grid-column: 1/-1;
         grid-row: 1/-1;
-        width: 100%;
-        height: 100%;
+        display: flex;
+        justify-self: flex-start ;
+        align-self: center;
+        width: 60%;
+        height: 50vh;
+        // border:solid 2px blue;
+        //cloud starts as transparent in order to allow it to reset after animation
+        opacity: 0;
+
         }
+
+    .cloud2 {
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        display: flex;
+        justify-self: flex-end ;
+        align-self: center;
+        width: 50%;
+        height: 40vh;
+        // border:solid 2px red;
+        //cloud starts as transparent in order to allow it to reset after animation
+        opacity: 0;
+        
     }
+}
 
 
 #third_page {
     @include section_setup();
 
-    img {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
-        width: 100%;
-        height: 100%;
-        }
+    .bg {
+        @include bg_images();
     }
+}
+
 
 #fourth_page {
     @include section_setup();
 
     img {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
-        width: 100%;
-        height: 100%;
-        }
+        @include bg_images();
     }
-    
+}
+
+// animations!
+// ----------------------------------------------------------------
+.reveal {
+    //needed for script
+}
+
+.reveal.active {
+    //needed for script
+}
+
+
+.active.move_cloud_1 {
+    animation: move_cloud_1;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-direction:normal;
+    // animation-fill-mode: forwards;
+}
+
+
+  @keyframes move_cloud_1 {
+    0% {
+        transform: translate(0,0);
+        //   opacity: 0;
+    }
+
+    50% {
+    //   transform: translateY(0);
+    transform: translate(-5vw, -50vh);
+      opacity: 1;
+    }
+
+    100% {
+        transform: translate(-5vw, -50vh);
+        opacity: 0;
+    }
+  }
+
+
+.active.move_cloud_2 {
+    animation: move_cloud_2;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-direction:normal;
+    // animation-fill-mode: forwards;
+}
+
+  @keyframes move_cloud_2 {
+    0% {
+        transform: translate(0,0);
+        //   opacity: 0;
+    }
+
+    50% {
+    //   transform: translateY(0);
+    transform: translate(-5vw, -55vh);
+      opacity: 1;
+    }
+
+    100% {
+        transform: translate(-5vw, -55vh);
+        opacity: 0;
+    }
+  }
+
+
 

@@ -3,6 +3,7 @@
 html, body {
   scroll-snap-type: y mandatory;
   margin: 0px;
+  background-color: rgb(49, 49, 49);
 }
 
 #main {
@@ -14,24 +15,14 @@ html, body {
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   border: black solid 2px;
 }
-#main img {
+#main .bg {
   grid-column: 1/-1;
   grid-row: 1/-1;
   width: 100%;
   height: 100vh;
-  animation-name: main_img_animation;
-  animation-timeline: scroll();
-  animation-duration: 1ms;
-}
-@keyframes main_img_animation {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
 
 #second_page {
@@ -43,13 +34,34 @@ html, body {
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   border: black solid 2px;
 }
-#second_page img {
+#second_page .bg {
   grid-column: 1/-1;
   grid-row: 1/-1;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+}
+#second_page .cloud1 {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  justify-self: flex-start;
+  align-self: center;
+  width: 60%;
+  height: 50vh;
+  opacity: 0;
+}
+#second_page .cloud2 {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  justify-self: flex-end;
+  align-self: center;
+  width: 50%;
+  height: 40vh;
+  opacity: 0;
 }
 
 #third_page {
@@ -61,13 +73,14 @@ html, body {
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   border: black solid 2px;
 }
-#third_page img {
+#third_page .bg {
   grid-column: 1/-1;
   grid-row: 1/-1;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 #fourth_page {
@@ -79,13 +92,55 @@ html, body {
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   border: black solid 2px;
 }
 #fourth_page img {
   grid-column: 1/-1;
   grid-row: 1/-1;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+}
+
+.active.move_cloud_1 {
+  animation: move_cloud_1;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+}
+
+@keyframes move_cloud_1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-5vw, -50vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-5vw, -50vh);
+    opacity: 0;
+  }
+}
+.active.move_cloud_2 {
+  animation: move_cloud_2;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+}
+
+@keyframes move_cloud_2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-5vw, -55vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-5vw, -55vh);
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
