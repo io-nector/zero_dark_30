@@ -1,146 +1,249 @@
-/*-----------------------------------------------------------------
-------------------------------------------------------------------*/
-html, body {
-  scroll-snap-type: y mandatory;
+@import url("https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+html {
+  padding: 2px;
   margin: 0px;
-  background-color: rgb(49, 49, 49);
+  padding: 0px;
 }
 
-#main {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  justify-content: center;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  border: black solid 2px;
-}
-#main .bg {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
-  width: 100%;
-  height: 100vh;
-}
-
-#second_page {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  justify-content: center;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  border: black solid 2px;
-}
-#second_page .bg {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
-  width: 100%;
-  height: 100vh;
-}
-#second_page .cloud1 {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
+body {
+  background-color: rgb(90, 90, 90);
   display: flex;
-  justify-self: flex-start;
-  align-self: center;
-  width: 60%;
-  height: 50vh;
-  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3vh;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
-#second_page .cloud2 {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
+
+.header {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  background-color: rgb(33, 33, 33);
+  height: 13vh;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  margin: 0px;
+  padding-top: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  justify-content: space-between;
+  gap: 5vw;
+}
+.header .header_left_cell_1 {
+  margin: 3px;
+  grid-column: 1;
+  width: 100%;
+  height: auto;
   display: flex;
-  justify-self: flex-end;
-  align-self: center;
-  width: 50%;
-  height: 40vh;
-  opacity: 0;
-}
-
-#third_page {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
   justify-content: center;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  border: black solid 2px;
+  align-items: end;
+  padding-bottom: 1vh;
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0px;
+  cursor: pointer;
 }
-#third_page .bg {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
+.header .header_left_cell_2 {
+  margin: 3px;
+  grid-column: 2;
   width: 100%;
-  height: 100vh;
-}
-
-#fourth_page {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  height: auto;
+  display: flex;
   justify-content: center;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  border: black solid 2px;
+  align-items: end;
+  padding-bottom: 1vh;
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0px;
+  cursor: pointer;
 }
-#fourth_page img {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
+.header .header_right_cell_1 {
+  margin: 3px;
+  grid-column: 4;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 1vh;
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0px;
+  cursor: pointer;
+}
+.header .header_right_cell_2 {
+  margin: 3px;
+  grid-column: 5;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 1vh;
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0px;
+  cursor: pointer;
+}
+.header .header_center {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.header .header_center img {
+  width: auto;
+  height: 20vh;
 }
 
-.active.move_cloud_1 {
-  animation: move_cloud_1;
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-direction: normal;
+.main_image {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  width: 100%;
+  height: 90vh;
+  background-image: url(images/barn_bg_4.jpg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 10vh;
+  margin-bottom: 20vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.main_image .main_img_text {
+  padding: 0px;
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.383);
+  width: 100%;
+  height: auto;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  color: rgb(145, 145, 145);
+  font-family: "Sorts Mill Goudy";
+  font-size: 110px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 20px;
 }
 
-@keyframes move_cloud_1 {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-5vw, -50vh);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-5vw, -50vh);
-    opacity: 0;
-  }
-}
-.active.move_cloud_2 {
-  animation: move_cloud_2;
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-direction: normal;
+.coffee_container {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  height: 80vh;
+  width: 80%;
+  background-color: white;
+  margin-bottom: 10vh;
 }
 
-@keyframes move_cloud_2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-5vw, -55vh);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-5vw, -55vh);
-    opacity: 0;
-  }
+.other_drinks_container {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  height: 80vh;
+  width: 80%;
+  background-color: white;
+  margin-bottom: 10vh;
+}
+
+.pastries_container {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  height: 80vh;
+  width: 80%;
+  background-color: white;
+  margin-bottom: 10vh;
+}
+
+.events_container {
+  border: rgba(255, 255, 255, 0) solid 2px;
+  height: 80vh;
+  width: 80%;
+  background-color: white;
+  margin-bottom: 10vh;
+}
+
+.content_header {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 50px;
+  text-decoration: none;
+  font-weight: normal;
+  letter-spacing: 20px;
+  background-color: rgba(0, 0, 0, 0.459);
+}
+
+footer {
+  height: 25vh;
+  width: 100%;
+  position: relative;
+  bottom: 0px;
+  background-color: rgb(33, 33, 33);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.contact_info {
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: normal;
+  letter-spacing: 0px;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  justify-self: start;
+  background-color: rgba(255, 255, 255, 0.375);
+}
+.contact_info a {
+  color: rgb(255, 255, 255);
+  font-family: "Sorts Mill Goudy";
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: normal;
+  letter-spacing: 0px;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 50px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,175 +6,261 @@
 
 // must include a .js file as well as .reveal, and reveal.active class in css to work. 
 
+//material~ class name must not be changed, it will break the google fonts icon setup.
+
+
+//customer font matches their facebook profile
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
+
+//google Icons
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+// variables ---------------
+$global_font_color: rgb(255, 255, 255);
+$page_color:rgb(90, 90, 90);
+$border_colors: white;
+$header_footer_bg_color: rgb(33, 33, 33);
+// -------------------------
+
 @mixin debug_border (
-    $color:black
+    $color:rgba(255, 255, 255, 0)
 ){
     border:$color solid 2px;
 }
 
-@mixin section_setup (
-    $justify-content: center,
-    $align-items: center,
-    $column_count: 10,
-    $row_count: 10,
+
+@mixin header_cells (
+    $header_col_num:span 1,
 ){
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: repeat($column_count, 1fr);
-    grid-template-rows: repeat($row_count, 1fr);
-    justify-content: $justify-content;
-    align-items: $align-items;
-    scroll-snap-align: start;
-    //may want to remove this based on user experience
-    scroll-snap-stop: always;
-
-
-    @include debug_border();
-}
-
-@mixin bg_images {
-    grid-column: 1/-1;
-    grid-row: 1/-1;
+    margin:3px;
+    grid-column: $header_col_num;
     width: 100%;
-    height: 100vh;
+    height:auto;
+    // @include debug_border();
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 1vh;
+    @include default_font(
+        $font_size:25px, 
+        $font-weight:bold,
+    );
+    cursor: pointer;
+
 }
 
-/*-----------------------------------------------------------------
-------------------------------------------------------------------*/
-html, body {
-    scroll-snap-type: y mandatory;
+@mixin default_font(
+    $color: $global_font_color,
+    $font_family:  ('Sorts Mill Goudy'),
+    $font_size: 20px,
+    $font_weight:normal,
+    $letter_spacing:0px,
+
+    ){
+        color: $color;
+        font-family: $font_family;
+        font-size: $font_size;
+        text-decoration: none;
+        font-weight: $font-weight;
+        letter-spacing: $letter_spacing;
+    }
+
+@mixin content_header {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+    @include default_font(
+        $font_size:50px,
+        $letter_spacing:20px
+    );
+    background-color:rgba(0, 0, 0, 0.459);
+}
+
+@mixin content_container {
+    @include debug_border();
+    height: 80vh;
+    width: 80%;
+    background-color: white;
+    margin-bottom: 10vh;
+}
+
+
+html{
+    padding: 2px;
     margin: 0px;
-    background-color: rgb(49, 49, 49);
+    padding: 0px;
 }
 
-#main {
-    @include section_setup();
-
-     .bg {
-        @include bg_images();
-    }
+body {
+    background-color: $page_color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+    width: 100%;
+    margin:0px;
+    padding: 0px;    
 }
 
+.header {
+    @include debug_border();
+    background-color: $header_footer_bg_color;
+    height: 13vh;
+    width: 100%;
+    position:  fixed;
+    top: 0px;
+    margin: 0px;
+    padding-top:0px;
 
-#second_page {
-    @include section_setup();
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows:100%;
+    justify-content: space-between;
+    gap:5vw;
+    
+    
 
-    .bg {
-        @include bg_images();
+    .header_left_cell_1{
+        @include header_cells($header_col_num:1);
     }
 
-    .cloud1 {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
-        display: flex;
-        justify-self: flex-start ;
-        align-self: center;
-        width: 60%;
-        height: 50vh;
-        // border:solid 2px blue;
-        //cloud starts as transparent in order to allow it to reset after animation
-        opacity: 0;
+    .header_left_cell_2 {
+        @include header_cells($header_col_num:2)
+    }
 
-        }
+    .header_right_cell_1{
+        @include header_cells($header_col_num:4);
+    }
 
-    .cloud2 {
-        grid-column: 1/-1;
-        grid-row: 1/-1;
+    .header_right_cell_2 {
+        @include header_cells($header_col_num:5)
+    }
+
+    .header_center {
+        grid-column: 3;
+        grid-row:1;
         display: flex;
-        justify-self: flex-end ;
-        align-self: center;
-        width: 50%;
-        height: 40vh;
-        // border:solid 2px red;
-        //cloud starts as transparent in order to allow it to reset after animation
-        opacity: 0;
+        justify-content: center;
+        align-items: flex-start;
         
+        img {
+            width: auto;
+            height: 20vh;
+        }
+    }
+    
+
+
+
+}
+
+.main_image {
+    @include debug_border();
+    width: 100%;
+    height: 90vh;
+    background-image: url(images/barn_bg_4.jpg);
+    background-position:bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10vh;
+    margin-bottom: 20vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .main_img_text {
+        padding: 0px;
+        margin: 0px;
+        background-color: rgba(0, 0, 0, 0.383);
+        width: 100%;
+        height: auto;
+        text-align: center;
+        backdrop-filter:blur(10px);
+
+        @include default_font(
+            $font_size:110px,
+            $font_weight:bold,
+            $color:rgb(145, 145, 145),
+            $letter_spacing:20px,
+        );
+    }
+}
+
+.coffee_container {
+    @include content_container();
+}
+
+.other_drinks_container {
+    @include content_container();
+}
+
+.pastries_container {
+    @include content_container();
+}
+
+.events_container {
+    @include content_container();
+}
+
+
+// used in all content sections to label the top
+.content_header {
+    @include content_header();
+}
+
+footer {
+    height: 25vh;
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    background-color: $header_footer_bg_color;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.contact_info{
+    @include default_font();
+    margin-top:20px;
+    padding: 10px;
+    text-align: center;
+    justify-self: start;
+    // width: 100%;
+    background-color: rgba(255, 255, 255, 0.375);
+    
+    a {
+        @include default_font();
     }
 }
 
 
-#third_page {
-    @include section_setup();
-
-    .bg {
-        @include bg_images();
-    }
-}
-
-
-#fourth_page {
-    @include section_setup();
-
-    img {
-        @include bg_images();
-    }
-}
-
-// animations!
-// ----------------------------------------------------------------
-.reveal {
-    //needed for script
-}
-
-.reveal.active {
-    //needed for script
-}
-
-
-.active.move_cloud_1 {
-    animation: move_cloud_1;
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-    animation-direction:normal;
-    // animation-fill-mode: forwards;
-}
-
-
-  @keyframes move_cloud_1 {
-    0% {
-        transform: translate(0,0);
-        //   opacity: 0;
-    }
-
-    50% {
-    //   transform: translateY(0);
-    transform: translate(-5vw, -50vh);
-      opacity: 1;
-    }
-
-    100% {
-        transform: translate(-5vw, -50vh);
-        opacity: 0;
-    }
+//---note --------
+// the following code is sourced from
+// https://www.w3schools.com/howto/howto_css_social_media_buttons.asp
+.fa {
+    padding: 20px;
+    font-size: 50px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
   }
-
-
-.active.move_cloud_2 {
-    animation: move_cloud_2;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out;
-    animation-direction:normal;
-    // animation-fill-mode: forwards;
-}
-
-  @keyframes move_cloud_2 {
-    0% {
-        transform: translate(0,0);
-        //   opacity: 0;
-    }
-
-    50% {
-    //   transform: translateY(0);
-    transform: translate(-5vw, -55vh);
-      opacity: 1;
-    }
-
-    100% {
-        transform: translate(-5vw, -55vh);
-        opacity: 0;
-    }
+  
+  /* Add a hover effect if you want */
+  .fa:hover {
+    opacity: 0.7;
   }
-
-
-
+  
+  /* Set a specific color for each brand */
+  
+  /* Facebook */
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
