@@ -117,6 +117,17 @@ $global_font_size: 50px;
     overflow: hidden;
 }
 
+@mixin content_container_mobile {
+        @include debug_border();
+        max-height: 80vh;
+        min-height: auto;
+        width: 100%;
+        background-color: $page_color;
+        margin-bottom: 10vh;
+        overflow: hidden;
+}
+
+
 
 html{
     padding: 2px;
@@ -136,6 +147,10 @@ body {
     padding: 0px;    
 }
 
+
+#top {
+
+}
 
 @media screen and (min-width:1200px){
 .mobile_header {
@@ -260,10 +275,17 @@ body {
         align-items: center;
     }
 }
-
+@media screen and (max-width:1200px){
+    #coffee_container {
+        @include content_container_mobile;
+        overflow: hidden;
+    }
+}
+@media screen and (min-width:1200px){
 #coffee_container {
     @include content_container();
     overflow: hidden;
+}
 }
 //start coffee container slider ---------------------------
 #slider {
@@ -309,6 +331,21 @@ div #slider figure {
     }
 //end coffee container slider ---------------------------
 
+
+@media  screen and (max-width:1200px) {
+
+#other_drinks_container{
+    @include content_container_mobile();
+
+    img {
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+}
+
+@media  screen and (min-width:1200px) {
 #other_drinks_container {
     @include content_container();
 
@@ -318,7 +355,21 @@ div #slider figure {
         overflow: hidden;
     }
 }
+}
 
+@media  screen and (max-width:1200px) {
+    #pastries_container {
+        @include content_container_mobile();
+    
+        img {
+            height: auto;
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+}
+
+@media  screen and (min-width:1200px) {
 #pastries_container {
     @include content_container();
 
@@ -328,7 +379,21 @@ div #slider figure {
         overflow: hidden;
     }
 }
+}
 
+@media  screen and (max-width:1200px) {
+    #events_container {
+        @include content_container_mobile();
+        overflow: hidden;
+        img {
+            height: auto;
+            width: 100%;
+            
+        }
+    }
+}
+
+@media  screen and (min-width:1200px) {
 #events_container {
     @include content_container();
     overflow: hidden;
@@ -338,7 +403,7 @@ div #slider figure {
         
     }
 }
-
+}
 
 // used in all content sections to label the top
 @media screen and (min-width:900px){

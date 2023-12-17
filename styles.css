@@ -203,17 +203,30 @@ body {
     align-items: center;
   }
 }
-#coffee_container {
-  border: rgba(255, 255, 255, 0) solid 2px;
-  max-height: 80vh;
-  min-height: auto;
-  width: 80%;
-  background-color: rgb(90, 90, 90);
-  margin-bottom: 10vh;
-  overflow: hidden;
-  overflow: hidden;
+@media screen and (max-width: 1200px) {
+  #coffee_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 100%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+    overflow: hidden;
+  }
 }
-
+@media screen and (min-width: 1200px) {
+  #coffee_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 80%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+    overflow: hidden;
+  }
+}
 #slider {
   height: 100%;
   width: 100%;
@@ -270,51 +283,102 @@ div #slider figure {
     left: 0%;
   }
 }
-#other_drinks_container {
-  border: rgba(255, 255, 255, 0) solid 2px;
-  max-height: 80vh;
-  min-height: auto;
-  width: 80%;
-  background-color: rgb(90, 90, 90);
-  margin-bottom: 10vh;
-  overflow: hidden;
+@media screen and (max-width: 1200px) {
+  #other_drinks_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 100%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+  }
+  #other_drinks_container img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
 }
-#other_drinks_container img {
-  height: auto;
-  width: 100%;
-  overflow: hidden;
+@media screen and (min-width: 1200px) {
+  #other_drinks_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 80%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+  }
+  #other_drinks_container img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
 }
-
-#pastries_container {
-  border: rgba(255, 255, 255, 0) solid 2px;
-  max-height: 80vh;
-  min-height: auto;
-  width: 80%;
-  background-color: rgb(90, 90, 90);
-  margin-bottom: 10vh;
-  overflow: hidden;
+@media screen and (max-width: 1200px) {
+  #pastries_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 100%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+  }
+  #pastries_container img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
 }
-#pastries_container img {
-  height: auto;
-  width: 100%;
-  overflow: hidden;
+@media screen and (min-width: 1200px) {
+  #pastries_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 80%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+  }
+  #pastries_container img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
 }
-
-#events_container {
-  border: rgba(255, 255, 255, 0) solid 2px;
-  max-height: 80vh;
-  min-height: auto;
-  width: 80%;
-  background-color: rgb(90, 90, 90);
-  margin-bottom: 10vh;
-  overflow: hidden;
-  overflow: hidden;
+@media screen and (max-width: 1200px) {
+  #events_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 100%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+    overflow: hidden;
+  }
+  #events_container img {
+    height: auto;
+    width: 100%;
+  }
 }
-#events_container img {
-  height: auto;
-  width: 100%;
+@media screen and (min-width: 1200px) {
+  #events_container {
+    border: rgba(255, 255, 255, 0) solid 2px;
+    max-height: 80vh;
+    min-height: auto;
+    width: 80%;
+    background-color: rgb(90, 90, 90);
+    margin-bottom: 10vh;
+    overflow: hidden;
+    overflow: hidden;
+  }
+  #events_container img {
+    height: auto;
+    width: 100%;
+  }
 }
-
 @media screen and (min-width: 900px) {
   .content_header {
     display: flex;
