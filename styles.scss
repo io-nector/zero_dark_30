@@ -17,11 +17,23 @@
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
-// variables ---------------
+// bootstrap variables --------
+
+
+
+// ----------------------------
+
+
+// global variables custom defined (not bootstrap)---------------
 $global_font_color: rgb(255, 255, 255);
 $page_color:rgb(90, 90, 90);
-$border_colors: white;
+$border_colors: rgba(255, 255, 255, 0);
 $header_footer_bg_color: rgb(33, 33, 33);
+$global_font_size: 50px;
+
+// $global_font_size: 50px;
+
+
 // -------------------------
 
 @mixin debug_border (
@@ -43,20 +55,32 @@ $header_footer_bg_color: rgb(33, 33, 33);
     justify-content: center;
     align-items: end;
     padding-bottom: 1vh;
-    @include default_font(
-        $font_size:25px, 
-        $font-weight:bold,
-    );
     cursor: pointer;
 
+    a {
+        @include default_font
+        (
+        $font_size:25px, 
+        $font-weight:bold,);
+    }
+
+    a:hover {
+        color:$page_color;
+        
+    }
+
 }
+
+
+
 
 @mixin default_font(
     $color: $global_font_color,
     $font_family:  ('Sorts Mill Goudy'),
-    $font_size: 20px,
+    $font_size: $global_font_size,
     $font_weight:normal,
     $letter_spacing:0px,
+    $text_shadow: 6px 6px 2px black,
 
     ){
         color: $color;
@@ -65,27 +89,32 @@ $header_footer_bg_color: rgb(33, 33, 33);
         text-decoration: none;
         font-weight: $font-weight;
         letter-spacing: $letter_spacing;
-    }
+        text-shadow: $text_shadow;
+}
+
+
 
 @mixin content_header {
     display: flex;
     align-items: end;
     justify-content: center;
-    height: 10%;
+    height: auto;
     width: 100%;
     @include default_font(
-        $font_size:50px,
         $letter_spacing:20px
     );
-    background-color:rgba(0, 0, 0, 0.459);
+    // background-color:rgba(0, 0, 0, 0.459);
+    background-color: $page_color;
 }
 
 @mixin content_container {
     @include debug_border();
-    height: 80vh;
+    max-height: 80vh;
+    min-height: auto;
     width: 80%;
-    background-color: white;
+    background-color: $page_color;
     margin-bottom: 10vh;
+    overflow: hidden;
 }
 
 
@@ -107,7 +136,13 @@ body {
     padding: 0px;    
 }
 
-.header {
+
+@media screen and (min-width:1200px){
+.mobile_header {
+    display: none;
+}
+
+.header_desktop {
     @include debug_border();
     background-color: $header_footer_bg_color;
     height: 13vh;
@@ -116,14 +151,13 @@ body {
     top: 0px;
     margin: 0px;
     padding-top:0px;
+    z-index: 200;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows:100%;
     justify-content: space-between;
-    gap:5vw;
-    
-    
+    gap:5vw;    
 
     .header_left_cell_1{
         @include header_cells($header_col_num:1);
@@ -153,12 +187,122 @@ body {
             height: 20vh;
         }
     }
+}
+}
+/* hamburger drop down menu for mobile------------ */
+
+@media (max-width:1200px){
+
+    //hide desktop nav
+    .header_desktop {
+        display: none;
+    }
+
+    .mobile_header {
+        @include debug_border();
+        background-color: $header_footer_bg_color;
+        height: 17vh;
+        width: 100%;
+        position:  fixed;
+        top: 0px;
+        margin: 0px;
+        padding-top:0px;
+        z-index: 200;
+
+        // display: grid;
+        // grid-template-columns: 1fr ;
+        // grid-template-rows:1;
+        // grid-auto-rows: auto;
+        gap:5vw;    
     
 
+    .logo_mobile {
+        display: flex;
+        justify-content: center;
+        img {
+            position: relative;
+            height: 20vh;
+            // padding: 10px;
+            top:-10px;
+        }
+    }
 
+    #input1 {
+        grid-row: 1;
+        display: none;
+    }
 
+    .hamburger1 {
+        margin-top: 2vh;
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        height: 45px;
+        justify-content: center;
+        z-index: 120;
+    }
+
+    .hamburger1 div {
+        grid-row: span 1;
+        position: relative;
+        height: 5px;
+        width: 60px;
+        background-color: rgb(255, 255, 255);
+        margin:3px;
+        border-radius: 3px;
+        transition: all 0.2s ease-in-out;
+    }        
+
+    #input1:checked + .hamburger1 .line1 {
+        transform: rotate(45deg);
+        margin-top: 22.5px;
+    }
+    #input1:checked + .hamburger1 .line2 {
+        transform: rotate(-45deg);
+        margin-top: -8px;
+    }
+    #input1:checked + .hamburger1 .line3 {
+        transform: scale(0);
+    }
+    #input1:checked ~ .menu1 {
+        height: 340px;
+    }
+
+    .menu1 {
+        grid-row: 2;
+        width: 100%;
+        display: grid;
+        grid-template-rows: repeat(4, 0.5fr);
+        list-style: none;
+        clear: both;
+        width: auto;
+        height: 0px;
+        overflow: hidden;
+        transition: height .4s ease;
+        transition: all 0.3s ease;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .link1 {
+        width: 100%;
+        font-family: ('Sorts Mill Goudy');
+        font-weight: bold 400;
+        background-color: $header_footer_bg_color;
+        border: solid 1px white;
+        color: $global_font_color;
+        font-size: 35px;
+        text-decoration: none;
+        text-align: center;
+        padding: 2px;
+        
+        
+    }
 }
 
+}
+/* end hamburger ------------------------------------------ */
+
+@media screen and (min-width:1200px){
 .main_image {
     @include debug_border();
     width: 100%;
@@ -172,49 +316,120 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-
-    .main_img_text {
-        padding: 0px;
-        margin: 0px;
-        background-color: rgba(0, 0, 0, 0.383);
-        width: 100%;
-        height: auto;
-        text-align: center;
-        backdrop-filter:blur(10px);
-
-        @include default_font(
-            $font_size:110px,
-            $font_weight:bold,
-            $color:rgb(145, 145, 145),
-            $letter_spacing:20px,
-        );
+}
+}
+@media screen and (max-width:1200px){
+    .main_image {
+        @include debug_border();
+        width: 100vw;
+        height: 90vh;
+        background-image: url(images/barn_bg_4.jpg);
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-top: 10vh;
+        margin-bottom: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
-.coffee_container {
+#coffee_container {
     @include content_container();
+    overflow: hidden;
+}
+//start coffee container slider ---------------------------
+#slider {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    margin-bottom: 10vh;
+    overflow: hidden;
+}
+div #slider { 
+    overflow: hidden; 
+}
+div #slider figure img { 
+    width: 20%; 
+    float: left; 
+}
+div #slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 20s slidy infinite; 
 }
 
-.other_drinks_container {
+// div #slider figure > img {
+    // height:100%;
+    // width:;
+// }
+
+@keyframes slidy {
+    // to add images to slider, increase 100% {left:400%}.
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -0%; }
+    }
+//end coffee container slider ---------------------------
+
+#other_drinks_container {
     @include content_container();
+
+    img {
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
 }
 
-.pastries_container {
+#pastries_container {
     @include content_container();
+
+    img {
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
 }
 
-.events_container {
+#events_container {
     @include content_container();
+    overflow: hidden;
+    img {
+        height: auto;
+        width: 100%;
+        
+    }
 }
 
 
 // used in all content sections to label the top
+@media screen and (min-width:900px){
 .content_header {
     @include content_header();
 }
+}
+
+@media screen and (max-width:900px){
+    .content_header {
+        @include content_header();
+        font-size: 30px;
+    }
+}
 
 footer {
-    height: 25vh;
+    height: auto;
     width: 100%;
     position: relative;
     bottom: 0px;
@@ -227,16 +442,16 @@ footer {
 }
 
 .contact_info{
-    @include default_font();
+    @include default_font($font_size:20px);
     margin-top:20px;
     padding: 10px;
     text-align: center;
     justify-self: start;
     // width: 100%;
-    background-color: rgba(255, 255, 255, 0.375);
+    // background-color: rgba(255, 255, 255, 0.375);
     
     a {
-        @include default_font();
+        @include default_font($font_size:20px);
     }
 }
 
@@ -247,7 +462,7 @@ footer {
 .fa {
     padding: 20px;
     font-size: 50px;
-    width: 50px;
+    width: 80px;
     text-align: center;
     text-decoration: none;
   }

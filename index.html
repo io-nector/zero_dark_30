@@ -2,27 +2,43 @@
 <html lang="en">
 <head>
     <title>Zero Dark 30</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="styles.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <script type="text/javascript" src="scroll.js"></script>
 
 </head>
 <body>
-    <div class="header">
+
+<!-- start bootsrap required syntax -->
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+
+  <!-- desktop header -->
+    <div class="header_desktop">
         <div class="header_left_cell_1">
-            The Coffee
+            <a href="#coffee_container">Coffee </a>
         </div>
 
         <div class="header_left_cell_2">
-            Other Drinks
+            <a href="#other_drinks_container" class="href"> Other Drinks</a>
         </div>
 
         <div class="header_right_cell_1">
-            Pastries
+            <a href="#pastries_container" class="href">Pastries</a>
         </div>
 
         <div class="header_right_cell_2">
-            Events-Catering
+           <a href="#events_container" class="href">Events-Catering </a> 
         </div>
 
         <div class="header_center">
@@ -30,34 +46,74 @@
         </div>  
     </div>
 
-    <div class="main_image">
-        <div class="main_img_text">
-            Zero Dark 30
-        </div>
+<!-- Mobile header -->
+<!-- hamburger menu -->
+<div class="mobile_header">
+
+
+<input type="checkbox" id="input1">
+<label class="hamburger1" for="input1">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+</label>
+
+<nav class="menu1">
+    <a href="#coffee_container" class="link1">Coffee </a>
+    <a href="#other_drinks_container" class="link1"> Other Drinks</a>
+    <a href="#pastries_container" class="link1">Pastries</a>
+    <a href="#events_container" class="link1">Events-Catering </a>
+</nav>
+
+    <div class="logo_mobile">
+        <img src="images/logo_w_black.png">
     </div>
 
-    <div class="coffee_container">
+</div>
+<!-- -------------------- -->
+
+
+    <div class="main_image">
+        <!-- <div class="main_img_text">
+            Zero Dark 30
+        </div> -->
+    </div>
+
+    <div id="coffee_container">
         <div class="content_header">
             Coffee
         </div>
+
+        <div id="slider">
+            <figure>
+                <img src="images/coffee_01.avif" alt>
+                <img src="images/coffee_02.avif" alt>
+                <img src="images/coffee_05.avif" alt>
+                <img src="images/coffee_04.avif" alt>
+                <!-- <img src="austin-fireworks.jpg" alt> -->
+            </figure>
+         </div>
     </div>
 
-    <div class="other_drinks_container">
+    <div id="other_drinks_container">
         <div class="content_header">
             Other Drinks
         </div>
+        <img src="images/other_drinks.avif">
     </div>
 
-    <div class="pastries_container">
+    <div id="pastries_container">
         <div class="content_header">
             Pastries
         </div>
+        <img src="images/pastries.avif">
     </div>
 
-    <div class="events_container">
+    <div id="events_container">
         <div class="content_header">
             Events & Catering
         </div>
+        <img src="images/catering.avif">
     </div>
 
     <footer>
