@@ -151,14 +151,13 @@ body {
   .mobile_header {
     border: rgba(255, 255, 255, 0) solid 2px;
     background-color: rgb(33, 33, 33);
-    height: 17vh;
+    height: 10vh;
     width: 100%;
     position: fixed;
     top: 0px;
     margin: 0px;
     padding-top: 0px;
     z-index: 200;
-    gap: 5vw;
   }
   .mobile_header .logo_mobile {
     display: flex;
@@ -167,70 +166,8 @@ body {
   .mobile_header .logo_mobile img {
     position: relative;
     height: 20vh;
+    padding: 10px;
     top: -10px;
-  }
-  .mobile_header #input1 {
-    grid-row: 1;
-    display: none;
-  }
-  .mobile_header .hamburger1 {
-    margin-top: 2vh;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    height: 45px;
-    justify-content: center;
-    z-index: 120;
-  }
-  .mobile_header .hamburger1 div {
-    grid-row: span 1;
-    position: relative;
-    height: 5px;
-    width: 60px;
-    background-color: rgb(255, 255, 255);
-    margin: 3px;
-    border-radius: 3px;
-    transition: all 0.2s ease-in-out;
-  }
-  .mobile_header #input1:checked + .hamburger1 .line1 {
-    transform: rotate(45deg);
-    margin-top: 22.5px;
-  }
-  .mobile_header #input1:checked + .hamburger1 .line2 {
-    transform: rotate(-45deg);
-    margin-top: -8px;
-  }
-  .mobile_header #input1:checked + .hamburger1 .line3 {
-    transform: scale(0);
-  }
-  .mobile_header #input1:checked ~ .menu1 {
-    height: 340px;
-  }
-  .mobile_header .menu1 {
-    grid-row: 2;
-    width: 100%;
-    display: grid;
-    grid-template-rows: repeat(4, 0.5fr);
-    list-style: none;
-    clear: both;
-    width: auto;
-    height: 0px;
-    overflow: hidden;
-    transition: height 0.4s ease;
-    transition: all 0.3s ease;
-    justify-content: center;
-    align-items: center;
-  }
-  .mobile_header .link1 {
-    width: 100%;
-    font-family: "Sorts Mill Goudy";
-    font-weight: bold 400;
-    background-color: rgb(33, 33, 33);
-    border: solid 1px white;
-    color: rgb(255, 255, 255);
-    font-size: 35px;
-    text-decoration: none;
-    text-align: center;
-    padding: 2px;
   }
 }
 /* end hamburger ------------------------------------------ */

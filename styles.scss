@@ -201,19 +201,14 @@ body {
     .mobile_header {
         @include debug_border();
         background-color: $header_footer_bg_color;
-        height: 17vh;
+        height: 10vh;
         width: 100%;
         position:  fixed;
         top: 0px;
         margin: 0px;
         padding-top:0px;
         z-index: 200;
-
-        // display: grid;
-        // grid-template-columns: 1fr ;
-        // grid-template-rows:1;
-        // grid-auto-rows: auto;
-        gap:5vw;    
+        
     
 
     .logo_mobile {
@@ -222,81 +217,12 @@ body {
         img {
             position: relative;
             height: 20vh;
-            // padding: 10px;
+            padding: 10px;
             top:-10px;
         }
     }
 
-    #input1 {
-        grid-row: 1;
-        display: none;
-    }
 
-    .hamburger1 {
-        margin-top: 2vh;
-        display: grid;
-        grid-template-rows: repeat(3,1fr);
-        height: 45px;
-        justify-content: center;
-        z-index: 120;
-    }
-
-    .hamburger1 div {
-        grid-row: span 1;
-        position: relative;
-        height: 5px;
-        width: 60px;
-        background-color: rgb(255, 255, 255);
-        margin:3px;
-        border-radius: 3px;
-        transition: all 0.2s ease-in-out;
-    }        
-
-    #input1:checked + .hamburger1 .line1 {
-        transform: rotate(45deg);
-        margin-top: 22.5px;
-    }
-    #input1:checked + .hamburger1 .line2 {
-        transform: rotate(-45deg);
-        margin-top: -8px;
-    }
-    #input1:checked + .hamburger1 .line3 {
-        transform: scale(0);
-    }
-    #input1:checked ~ .menu1 {
-        height: 340px;
-    }
-
-    .menu1 {
-        grid-row: 2;
-        width: 100%;
-        display: grid;
-        grid-template-rows: repeat(4, 0.5fr);
-        list-style: none;
-        clear: both;
-        width: auto;
-        height: 0px;
-        overflow: hidden;
-        transition: height .4s ease;
-        transition: all 0.3s ease;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .link1 {
-        width: 100%;
-        font-family: ('Sorts Mill Goudy');
-        font-weight: bold 400;
-        background-color: $header_footer_bg_color;
-        border: solid 1px white;
-        color: $global_font_color;
-        font-size: 35px;
-        text-decoration: none;
-        text-align: center;
-        padding: 2px;
-        
-        
-    }
 }
 
 }
