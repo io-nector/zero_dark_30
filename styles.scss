@@ -1,15 +1,5 @@
-//scroll triggered animations are done using javascript - see 
-
-// https://alvarotrigo.com/blog/css-animations-scroll/
-
-//this is a great little javascript/ css work around. works on safari as well
-
-// must include a .js file as well as .reveal, and reveal.active class in css to work. 
-
-//material~ class name must not be changed, it will break the google fonts icon setup.
-
-
-//customer font matches their facebook profile
+// imported fonts
+// -----------------------------------------------------------------
 @import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
 
 //google Icons
@@ -17,70 +7,31 @@
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
-// bootstrap variables --------
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap');
 
 
+// variables
+// -----------------------------------------------------------------
+$global_bg_color:rgb(84, 84, 84);
+$global_contrast_color:black;
 
-// ----------------------------
-
-
-// global variables custom defined (not bootstrap)---------------
-$global_font_color: rgb(255, 255, 255);
-$page_color:rgb(90, 90, 90);
-$border_colors: rgba(255, 255, 255, 0);
-$header_footer_bg_color: rgb(33, 33, 33);
-$global_font_size: 50px;
-
-// $global_font_size: 50px;
-
-
-// -------------------------
-
-@mixin debug_border (
-    $color:rgba(255, 255, 255, 0)
+// mixins
+// -----------------------------------------------------------------
+@mixin debug(
+    $debug_border_color:red,
+    $debug_bg_color:rgb(143, 143, 205), 
 ){
-    border:$color solid 2px;
+    border: solid 2px $debug_border_color;
+    background-color: $debug_bg_color;
 }
-
-
-@mixin header_cells (
-    $header_col_num:span 1,
-){
-    margin:3px;
-    grid-column: $header_col_num;
-    width: 100%;
-    height:auto;
-    // @include debug_border();
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    padding-bottom: 1vh;
-    cursor: pointer;
-
-    a {
-        @include default_font
-        (
-        $font_size:25px, 
-        $font-weight:bold,);
-    }
-
-    a:hover {
-        color:$page_color;
-        
-    }
-
-}
-
-
-
-
 @mixin default_font(
-    $color: $global_font_color,
-    $font_family:  ('Sorts Mill Goudy'),
-    $font_size: $global_font_size,
+    $color: white,
+    $font_family: ('Montserrat', sans-serif),
+    $font_size: 30px,
     $font_weight:normal,
     $letter_spacing:0px,
-    $text_shadow: 6px 6px 2px black,
+    $text_shadow: 2px 2px 1px rgb(85, 85, 85),
+    $text_align:center,
 
     ){
         color: $color;
@@ -90,383 +41,646 @@ $global_font_size: 50px;
         font-weight: $font-weight;
         letter-spacing: $letter_spacing;
         text-shadow: $text_shadow;
+        text-align: $text_align;
 }
 
 
 
-@mixin content_header {
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    height: auto;
-    width: 100%;
-    @include default_font(
-        $letter_spacing:20px
-    );
-    // background-color:rgba(0, 0, 0, 0.459);
-    background-color: $page_color;
-}
-
-@mixin content_container {
-    @include debug_border();
-    max-height: 80vh;
-    min-height: auto;
-    width: 80%;
-    background-color: $page_color;
-    margin-bottom: 10vh;
-    overflow: hidden;
-}
-
-@mixin content_container_mobile {
-        @include debug_border();
-        max-height: 80vh;
-        min-height: auto;
-        width: 100%;
-        background-color: $page_color;
-        margin-bottom: 10vh;
-        overflow: hidden;
-}
-
-
-
-html{
-    padding: 2px;
-    margin: 0px;
-    padding: 0px;
-}
-
-body {
-    background-color: $page_color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 3vh;
-    width: 100%;
+// styles
+// -----------------------------------------------------------------
+html, body {
+    height: 100%;
+    width: 100vw;
     margin:0px;
-    padding: 0px;    
+    padding:0px;
+    background-color: $global_bg_color;
 }
-
-
-#top {
-
-}
-
-@media screen and (min-width:1200px){
-.mobile_header {
-    display: none;
-}
-
-.header_desktop {
-    @include debug_border();
-    background-color: $header_footer_bg_color;
-    height: 13vh;
+// header_desktop
+@media screen and (min-width:1200px) {
+header {
+    // @include debug(
+    //     $debug_bg_color:rgb(0, 0, 0), 
+    //     $debug_border_color:pink
+    //     );
     width: 100%;
-    position:  fixed;
-    top: 0px;
-    margin: 0px;
-    padding-top:0px;
+    height: 5vh;
+    position: fixed;
     z-index: 200;
+    display: flex;
+    justify-content: center;
+    background-color: black;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows:100%;
-    justify-content: space-between;
-    gap:5vw;    
-
-    .header_left_cell_1{
-        @include header_cells($header_col_num:1);
-    }
-
-    .header_left_cell_2 {
-        @include header_cells($header_col_num:2)
-    }
-
-    .header_right_cell_1{
-        @include header_cells($header_col_num:4);
-    }
-
-    .header_right_cell_2 {
-        @include header_cells($header_col_num:5)
-    }
-
-    .header_center {
-        grid-column: 3;
-        grid-row:1;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        
-        img {
-            width: auto;
-            height: 20vh;
-        }
+    img {
+        height: 20vh;
+        width: auto;
     }
 }
 }
-/* hamburger drop down menu for mobile------------ */
-
-@media (max-width:1200px){
-
-    //hide desktop nav
-    .header_desktop {
-        display: none;
-    }
-
-    .mobile_header {
-        @include debug_border();
-        background-color: $header_footer_bg_color;
-        height: 10vh;
+@media screen and (max-width:1200px) {
+    header {
+        // @include debug(
+        //     $debug_bg_color:rgb(0, 0, 0), 
+        //     $debug_border_color:pink
+        //     );
         width: 100%;
-        position:  fixed;
-        top: 0px;
-        margin: 0px;
-        padding-top:0px;
+        height: 5vh;
+        position: fixed;
         z-index: 200;
-        
-    
-
-    .logo_mobile {
         display: flex;
-        justify-content: center;
+        justify-content: start;
+        background-color: black;
+    
         img {
-            position: relative;
             height: 20vh;
-            padding: 10px;
-            top:-10px;
+            width: auto;
         }
     }
-
-
-}
-
-}
-/* end hamburger ------------------------------------------ */
-
+    }
+// main_desktop
 @media screen and (min-width:1200px){
-.main_image {
-    @include debug_border();
+.main_img {
+    // @include debug(
+    //     $debug_bg_color:orange, 
+    //     $debug_border_color:pink
+    //     );
     width: 100%;
-    height: 90vh;
-    background-image: url(images/barn_bg_4.jpg);
-    background-position:bottom;
+    height: 100vh;
+    background-image: url("images/barn_bg_4.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 10vh;
-    margin-bottom: 20vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    background-position: bottom;
+    
+
+    .main_img_text {
+        // @include debug(
+        // $debug_bg_color:none, 
+        // $debug_border_color:white
+        // );
+
+        width:60%;
+        height: 35%;
+        position: relative;
+        top: 35vh;
+        padding-left:10vw;
+        padding-top:10px;
+        background-color: rgba(0, 0, 0, 0.313);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(4px);
+        @include default_font(
+            $font-weight:bold, 
+            $text_shadow:none,
+            $text_align:left);
+
+    }
+    
 }
 }
+// main_mobile
 @media screen and (max-width:1200px){
-    .main_image {
-        @include debug_border();
-        width: 100vw;
-        height: 90vh;
-        background-image: url(images/barn_bg_4.jpg);
-        background-position:center;
+    .main_img {
+        // @include debug(
+        //     $debug_bg_color:orange, 
+        //     $debug_border_color:pink
+        //     );
+        width: 100%;
+        height: 100vh;
+        background-image: url("images/barn_bg_4.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        margin-top: 10vh;
-        margin-bottom: 20vh;
+        background-position: bottom;
         display: flex;
         justify-content: center;
-        align-items: center;
-    }
-}
-@media screen and (max-width:1200px){
-    #coffee_container {
-        @include content_container_mobile;
-        overflow: hidden;
-    }
-}
-@media screen and (min-width:1200px){
-#coffee_container {
-    @include content_container();
-    overflow: hidden;
-}
-}
-//start coffee container slider ---------------------------
-#slider {
-    height: 100%;
-    width: 100%;
-    background-color:black;
-    margin-bottom: 10vh;
-    overflow: hidden;
-}
-div #slider { 
-    overflow: hidden; 
-}
-div #slider figure img { 
-    width: 20%; 
-    float: left; 
-}
-div #slider figure { 
-  position: relative;
-  width: 500%;
-  margin: 0;
-  left: 0;
-  text-align: left;
-  font-size: 0;
-  animation: 20s slidy infinite; 
-}
-
-// div #slider figure > img {
-    // height:100%;
-    // width:;
-// }
-
-@keyframes slidy {
-    // to add images to slider, increase 100% {left:400%}.
-    0% { left: 0%; }
-    20% { left: 0%; }
-    25% { left: -100%; }
-    45% { left: -100%; }
-    50% { left: -200%; }
-    70% { left: -200%; }
-    75% { left: -300%; }
-    95% { left: -300%; }
-    100% { left: -0%; }
-    }
-//end coffee container slider ---------------------------
-
-
-@media  screen and (max-width:1200px) {
-
-#other_drinks_container{
-    @include content_container_mobile();
-
-    img {
-        height: auto;
-        width: 100%;
-        overflow: hidden;
-    }
-}
-}
-
-@media  screen and (min-width:1200px) {
-#other_drinks_container {
-    @include content_container();
-
-    img {
-        height: auto;
-        width: 100%;
-        overflow: hidden;
-    }
-}
-}
-
-@media  screen and (max-width:1200px) {
-    #pastries_container {
-        @include content_container_mobile();
+        align-items: start;
+        
     
-        img {
+        .main_img_text {
+            // @include debug(
+            // $debug_bg_color:none, 
+            // $debug_border_color:white
+            // );
+    
+            width:100%;
             height: auto;
-            width: 100%;
-            overflow: hidden;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.313);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(4px);
+            @include default_font(
+                $font-weight:bold, 
+                $text_shadow:none,
+                $font_size:20px,
+                );
+            padding:15px;
+            padding-top:20vh;
+
         }
+        
     }
 }
 
-@media  screen and (min-width:1200px) {
-#pastries_container {
-    @include content_container();
+// main-1_desktop
+@media screen and (min-width:1200px){
+.main-1_section {
+    height: 75vh;
+    width:100%;
 
-    img {
-        height: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 10vh 60vh auto;
+    grid-template-areas: 
+    "head head" 
+    "body body"
+    "foot foot";
+    @include default_font(
+    );
+
+    .main-1_section_header {
+        // main image
+        // @include debug(
+        // $debug_bg_color:rgb(150, 212, 142), 
+        // $debug_border_color:rgb(254, 192, 255)
+        // );
+        background-color: $global_contrast_color ;
+        grid-area: head;
+        height: 100%;
         width: 100%;
-        overflow: hidden;
-    }
-}
-}
 
-@media  screen and (max-width:1200px) {
-    #events_container {
-        @include content_container_mobile();
-        overflow: hidden;
-        img {
-            height: auto;
-            width: 100%;
+        h2 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 25px;
             
         }
     }
+
+    .main-1_section_body {
+        // catering service
+        // @include debug(
+        // $debug_bg_color:rgb(78, 143, 145), 
+        // $debug_border_color:rgb(254, 192, 255)
+        // );
+        
+        background-color: $global_bg_color;
+
+        grid-area: body;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        // padding-left: 10%;
+        // gap:10%;
+
+        img {
+            // @include debug(
+            // $debug_bg_color:none, 
+            // $debug_border_color:white
+            // );
+    
+            width: 40%;
+            height: 80%;
+            // position: relative;
+            // top:10%;
+            // left:10%;
+            border: solid 1px rgba(255, 255, 255, 0.282);
+            box-shadow: -30px -20px 0px 0px black;
+            
+        }
+    
+        .text {
+            // @include debug(
+            //     $debug_bg_color:none, 
+            //     $debug_border_color:white
+            //     );
+                width: 35%;
+                height: auto;
+                padding:20px;
+                text-align: center;
+
+                p{
+                    font-size: 22px;
+                }
+        }
+    }
+    .main-1_section_foot {
+    background-color: $global_contrast_color ;
+    grid-area: foot;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    }
+}
+}
+// main-1_modile
+@media screen and (max-width:1200px){
+    .main-1_section {
+        height: auto;
+        width:100%;
+    
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        "head" 
+        "body"
+        "foot";
+        @include default_font(
+        );
+    
+        .main-1_section_header {
+            // main image
+            // @include debug(
+            // $debug_bg_color:rgb(150, 212, 142), 
+            // $debug_border_color:rgb(254, 192, 255)
+            // );
+            background-color: $global_contrast_color ;
+            grid-area: head;
+            height: auto;
+            width: 100%;
+    
+            h2 {
+                font-size: 25px;
+            }
+        }
+    
+        .main-1_section_body {
+            // catering service
+            // @include debug(
+            // $debug_bg_color:rgb(78, 143, 145), 
+            // $debug_border_color:rgb(254, 192, 255)
+            // );
+            
+            background-color: $global_bg_color;
+    
+            grid-area: body;
+            height: 100%;
+            width: 100%;
+    
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+    
+            img {
+                // @include debug(
+                    // $debug_bg_color:none, 
+                    // $debug_border_color:white
+                    // );
+                width: 100%;
+                height: auto;
+                border: solid 1px rgba(255, 255, 255, 0.282);                
+            }
+        
+            .text {
+                // @include debug(
+                //     $debug_bg_color:none, 
+                //     $debug_border_color:white
+                //     );
+                    width: 100%;
+                    height: auto;
+                    padding:20px;
+                    text-align: center;
+    
+                    p{
+                        font-size: 22px;
+                    }
+            }
+        }
+        .main-1_section_foot {
+        background-color: $global_contrast_color ;
+        grid-area: foot;
+        height: 100%;
+        width: 100%;
+
+        p {
+            font-size: 25px;
+            
+        }
+        }
+    }
 }
 
-@media  screen and (min-width:1200px) {
-#events_container {
-    @include content_container();
-    overflow: hidden;
-    img {
+.main-2_section {   
+    // coffees
+    // @include debug(
+    //     $debug_bg_color:rgb(212, 179, 142), 
+    //     $debug_border_color:rgb(0, 0, 0)
+    //     );
+        
         height: auto;
         width: 100%;
+        background-color: $global_bg_color;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows:minmax(auto, 40%) auto;
+        padding-top: 10%;
+        padding-bottom:10%;
+        @include default_font();
+
+        .main-2_section_text {
+            grid-column: 1;
+            grid-row: 1;
+            // align-self: end;
+            // justify-self: end;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 5%;
+        }
+
+        .main-2_section_images {
+
+            grid-column: 1;
+            grid-row:2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            // padding: 3%;
+            gap:20px;
         
+            .img_container {
+                position: relative;
+                height: auto;
+                min-width: 450px;
+                max-width: 40%;
+                // background-color: blue;
+                
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
+                p {
+                    // from chatGPT
+                    position: absolute; /* Position the paragraph absolutely within the container */
+                    width: 100%;
+                    top: 60%; /* Adjust the top position based on your design */
+                    transform: translateY(-50%); /* Center the text vertically */
+                    text-align: center; 
+                    background-color: rgba(255, 255, 255, 0.2);
+                    -webkit-backdrop-filter: blur(3px);
+                    backdrop-filter: blur(3px);
+                }
+            }
+            // img {
+            //     height: auto;
+            //     min-width: 450px;
+            //     max-width: 40%;
+            // }
+            
     }
 }
-}
+// main-3_desktop
+@media screen and (min-width:1200px) {
+    .main-3_section {
+        // other drinks & food
+        // @include debug(
+        //     $debug_bg_color:rgb(53, 217, 47), 
+        //     $debug_border_color:rgb(0, 0, 0)
+        //     );
+            
+        padding-top:5%;
+        padding-bottom:5%;
+        height: 100vh;
+        width: 100vw;
 
-// used in all content sections to label the top
-@media screen and (min-width:900px){
-.content_header {
-    @include content_header();
-}
-}
+        display: grid;
+        grid-template-columns: 5% repeat(7,1fr) 5% ;
+        // split all by 4
+        grid-template-rows: 5% repeat(4,1fr) 5%;
+        background-color: $global_contrast_color;
 
-@media screen and (max-width:900px){
-    .content_header {
-        @include content_header();
-        font-size: 30px;
+            .main-3_section_img_1 {
+                grid-column: 2/ span 4;
+                grid-row: 2/ span 4;
+                width: 100%;
+                height: auto;
+                justify-self: left;
+                img {
+                    width:100%;
+                    height: auto;
+                    // padding: 10px;
+                }
+            }
+
+            .main-3_section_img_2 {
+                grid-column: 5/ span 4;
+                grid-row: 3/ span 3;
+                
+                width: 100%;
+                height: 100%;
+                // justify-self: left;
+                background-color: rgb(84, 84, 84,.7);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                
+
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                padding: 20px;
+                
+                .text{
+                    @include default_font;
+                    width:100%;
+                    height: auto;
+                    padding: 10px;
+                }
+            }
+
     }
+}
+// main-3_mobile
+@media screen and (max-width:1200px) {
+    .main-3_section {
+        // other drinks & food
+        // @include debug(
+        //     $debug_bg_color:rgb(53, 217, 47), 
+        //     $debug_border_color:rgb(0, 0, 0)
+        //     );
+            
+        padding-top:5%;
+        padding-bottom:5%;
+        height: 100vh;
+        width: 100vw;
+
+        display: grid;
+
+
+            .main-3_section_img_1 {
+                width: 100%;
+                height: auto;
+                justify-self: left;
+                img {
+                    width:100%;
+                    height: auto;
+                    // padding: 10px;
+                }
+            }
+
+            .main-3_section_img_2 {         
+                width: 100%;
+                height: auto;
+                // justify-self: left;
+                background-color: $global_bg_color;
+                
+
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                padding: 20px;
+                // position: absolute;
+                // z-index: 200;
+                
+                .text{
+                    @include default_font;
+                    width:100%;
+                    height: auto;
+                    padding: 10px;
+                    font-size: 25px;
+                }
+            }
+
+    }
+}
+// main-4_desktop
+@media screen and (min-width:1200px) {
+    .main-4_section {
+        // other drinks & food
+        // @include debug(
+        //     $debug_bg_color:rgb(53, 217, 47), 
+        //     $debug_border_color:rgb(0, 0, 0)
+        //     );
+            
+        padding-top:5%;
+        padding-bottom:5%;
+        height: 100vh;
+        width: 100vw;
+
+        display: grid;
+        grid-template-columns: 5% repeat(7,1fr) 5% ;
+        // split all by 4
+        grid-template-rows: 5% repeat(4,1fr) 5%;
+        background-color: $global_bg_color;
+
+            .main-4_section_img_1 {
+
+                grid-column: 5/ span 4;
+                grid-row: 2/ span 4;
+                width: 100%;
+                height: auto;
+                justify-self: left;
+                img {
+                    width:100%;
+                    height: auto;
+                    // padding: 10px;
+                }
+            }
+
+            .main-4_section_img_2 {
+                grid-column: 2/ span 4;
+                grid-row: 3/ span 3;
+                
+                width: 100%;
+                height: 100%;
+                // justify-self: left;
+                background-color: rgba(0, 0, 0, 0.7);
+                -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+                
+
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                padding: 20px;
+                
+                .text{
+                    @include default_font;
+                    width:100%;
+                    height: auto;
+                    padding: 10px;
+                }
+            }
+
+    }
+}
+// main-4_mobile
+@media screen and (max-width:1200px) {
+    .main-4_section {
+        // other drinks & food
+        // @include debug(
+        //     $debug_bg_color:rgb(53, 217, 47), 
+        //     $debug_border_color:rgb(0, 0, 0)
+        //     );
+            
+        padding-top:5%;
+        padding-bottom:5%;
+        height: 100vh;
+        width: 100vw;
+
+        display: grid;
+
+
+            .main-4_section_img_1 {
+                width: 100%;
+                height: auto;
+                justify-self: left;
+                img {
+                    width:100%;
+                    height: auto;
+                    // padding: 10px;
+                }
+            }
+
+            .main-4_section_img_2 {         
+                width: 100%;
+                height: auto;
+                // justify-self: left;
+                background-color: $global_bg_color;
+                
+
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                padding: 20px;
+                // position: absolute;
+                // z-index: 200;
+                
+                .text{
+                    @include default_font;
+                    width:100%;
+                    height: auto;
+                    padding: 10px;
+                    font-size: 25px;
+                }
+            }
+
+    }
+}
+
+.main-5_section {
+    //reviews on facebook google
+        // about with circle images
+        @include debug(
+            $debug_bg_color:rgb(253, 139, 139), 
+            $debug_border_color:rgb(0, 0, 0)
+            );
+            
+            height: 60vh;
+            width: 100%;
 }
 
 footer {
-    height: auto;
-    width: 100%;
-    position: relative;
-    bottom: 0px;
-    background-color: $header_footer_bg_color;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+    @include debug(
+        $debug_bg_color:none, 
+        $debug_border_color:rgb(0, 0, 0)
+        );
+        
+        height: 25vh;
+        width: 100%;
 }
-
-.contact_info{
-    @include default_font($font_size:20px);
-    margin-top:20px;
-    padding: 10px;
-    text-align: center;
-    justify-self: start;
-    // width: 100%;
-    // background-color: rgba(255, 255, 255, 0.375);
-    
-    a {
-        @include default_font($font_size:20px);
-    }
-}
-
-
-//---note --------
-// the following code is sourced from
-// https://www.w3schools.com/howto/howto_css_social_media_buttons.asp
-.fa {
-    padding: 20px;
-    font-size: 50px;
-    width: 80px;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  /* Add a hover effect if you want */
-  .fa:hover {
-    opacity: 0.7;
-  }
-  
-  /* Set a specific color for each brand */
-  
-  /* Facebook */
-  .fa-facebook {
-    background: #3B5998;
-    color: white;
-  }
